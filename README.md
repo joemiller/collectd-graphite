@@ -22,7 +22,9 @@ INSTALLATION
 
 Make sure collectd and the collectd-perl module are installed.
 
-This was tested on CentOS 5 using the collectd rpm from EPEL.
+This was tested on CentOS 5 using the "collectd-4.10" and 
+"perl-Collectd-4.10" rpm's from the EPEL yum repo.
+
 Feedback on installing on other platforms is welcome.
 
 To install this module, run the following commands:
