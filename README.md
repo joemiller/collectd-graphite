@@ -6,15 +6,15 @@ of available plugins and graphite's excellent graphing
 capabilities.  It sends collectd data directly
 to your graphite server.
 
+It is implemented using the [collectd-perl](http://collectd.org/documentation/manpages/collectd-perl.5.shtml)
+interface.
+
 This plugin was inspired by the great [collectd-to-graphite](https://github.com/loggly/collectd-to-graphite)
-tool written by the prolific loggly engineer Jordan Sissel.
+tool written by the prolific engineer Jordan Sissel at Loggly.
 Jordan's implementation uses an external process to bridge
 collectd to graphite.  I did not want another process to
 manage or worry about, so I wrote a plugin for collectd
 instead.
-
-It is implemented using the [collectd-perl](http://collectd.org/documentation/manpages/collectd-perl.5.shtml)
-interface.
 
 
 INSTALLATION
@@ -84,14 +84,12 @@ Examples of valid paths:
 	collectd.host3_example_com.load.load.shortterm
 	collectd.host3_example_com.interface.if_octets-eth0.rx
 
-The default prefix is 'collectd'.  This can be overriden in the 
+The default prefix is 'collectd'.  This can be changed in the 
 collectd config file.
 
-There are pro and cons to this approach, since different plugins use
-a type_instance when they should use plugin_instance.  See here for
-further explanation:
+See here for more information on collectd plugin naming:
 
-    http://collectd.org/wiki/index.php/Naming_schema#Plugin_instance_and_type_instance
+    [http://collectd.org/wiki/index.php/Naming_schema#Plugin_instance_and_type_instance](http://collectd.org/wiki/index.php/Naming_schema#Plugin_instance_and_type_instance)
 
 
 SUPPORT AND DOCUMENTATION
@@ -104,12 +102,12 @@ perldoc command.
 
 You can also look for information on the github page:
 
-	https://github.com/joemiller/collectd-graphite
+	[https://github.com/joemiller/collectd-graphite](https://github.com/joemiller/collectd-graphite)
 
 Please use the github issues page for bugs and feedback.  Pull
 requests are also welcome!
 
-	https://github.com/joemiller/collectd-graphite/issues
+	[https://github.com/joemiller/collectd-graphite/issues](https://github.com/joemiller/collectd-graphite/issues)
 
 
 FUTURE?
