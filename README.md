@@ -91,7 +91,7 @@ collectd config file.
 
 See here for more information on collectd plugin naming:
 
-    [http://collectd.org/wiki/index.php/Naming_schema#Plugin_instance_and_type_instance](http://collectd.org/wiki/index.php/Naming_schema#Plugin_instance_and_type_instance)
+    http://collectd.org/wiki/index.php/Naming_schema#Plugin_instance_and_type_instance
 
 
 SUPPORT AND DOCUMENTATION
@@ -104,12 +104,12 @@ perldoc command.
 
 You can also look for information on the github page:
 
-	[https://github.com/joemiller/collectd-graphite](https://github.com/joemiller/collectd-graphite)
+	https://github.com/joemiller/collectd-graphite
 
 Please use the github issues page for bugs and feedback.  Pull
 requests are also welcome!
 
-	[https://github.com/joemiller/collectd-graphite/issues](https://github.com/joemiller/collectd-graphite/issues)
+	https://github.com/joemiller/collectd-graphite/issues
 
 
 FUTURE?
