@@ -115,6 +115,7 @@ requests are also welcome!
 FUTURE?
 -------
 
+- write tests!!
 - Support sending data to graphite via AMQP
 - Re-write in C if collectd-perl interface proves problematic
 
