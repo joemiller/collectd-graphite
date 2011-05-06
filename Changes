@@ -1,5 +1,7 @@
 Revision history for Collectd-Plugins-Graphite
 
+2    2011-05-06
+        github-issue-1: fixed bug that occurred when a collectd plugin uses spaces in its metric names
 1    2011-04-13
         First version.
 

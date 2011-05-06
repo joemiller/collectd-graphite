@@ -17,7 +17,7 @@ Version 1
 
 =cut
 
-our $VERSION = '1';
+our $VERSION = '2';
 
 
 =head1 SYNOPSIS
@@ -129,17 +129,24 @@ sub graphite_write {
     }
     if ( $vl->{'type_instance'} ne '' ) {
         $type_str .= "-" . $vl->{'type_instance'};
+
     }
     
     for (my $i = 0; $i < scalar (@$ds); ++$i) {
-      $buff .= sprintf  "%s.%s.%s.%s.%s %s %d\n",
-         $prefix,
-         $host,
-         $plugin_str,
-         $type_str,
-         $ds->[$i]->{'name'},
-         $vl->{'values'}->[$i],
-                 $vl->{'time'};
+        my $graphite_path = sprintf "%s.%s.%s.%s.%s",
+            $prefix,
+            $host,
+            $plugin_str,
+            $type_str,
+            $ds->[$i]->{'name'};
+            
+        # convert any spaces that may have snuck in
+        $graphite_path =~ s/\s+/_/g;
+      
+        $buff .= sprintf  "%s %s %d\n",
+            $graphite_path,
+            $vl->{'values'}->[$i],
+            $vl->{'time'};
     }
 
     # This is a best effort.  If sending to graphite fails, we

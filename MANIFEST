@@ -4,5 +4,6 @@ lib/Collectd/Plugins/Graphite.pm
 Makefile.PL
 MANIFEST			This list of files
 README.md
+README
 t/00-load.t
 t/manifest.t
