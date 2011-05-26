@@ -20,8 +20,13 @@ instead.
 REQUIREMENTS
 ------------
 Because the plugin requires the [Globals](http://collectd.org/wiki/index.php/Plugin:Perl#Globals) 
-option to be set to true, you will need at least version 4.9 of Collectd.
+option to be set to true, you will need at least version 4.9 of collectd.
 If you are using an older version, you'll have to compile with global visibility of symbols.
+
+This is the command to compile collectd with global visibility symbols:
+
+	./configure CFLAGS="-DLT_LAZY_OR_NOW='RTLD_LAZY|RTLD_GLOBAL'"
+	make all install
 
 
 INSTALLATION
