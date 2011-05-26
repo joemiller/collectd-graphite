@@ -3,7 +3,7 @@ Collectd-Graphite Plugin
 
 This plugin acts as bridge between collectd's huge base
 of available plugins and graphite's excellent graphing
-capabilities.  It sends collectd data directly
+capabilities. It sends collectd data directly
 to your graphite server.
 
 It is implemented using the [collectd-perl](http://collectd.org/documentation/manpages/collectd-perl.5.shtml)
@@ -12,9 +12,16 @@ interface.
 This plugin was inspired by the great [collectd-to-graphite](https://github.com/loggly/collectd-to-graphite)
 tool written by the prolific engineer Jordan Sissel at Loggly.
 Jordan's implementation uses an external process to bridge
-collectd to graphite.  I did not want another process to
+collectd to graphite. I did not want another process to
 manage or worry about, so I wrote a plugin for collectd
 instead.
+
+
+REQUIREMENTS
+------------
+Because the plugin requires the [Globals](http://collectd.org/wiki/index.php/Plugin:Perl#Globals) 
+option to be set to true, you will need at least version 4.9 of Collectd.
+If you are using an older version, you'll have to compile with global visibility of symbols.
 
 
 INSTALLATION
@@ -62,11 +69,11 @@ NETWORK TRAFFIC
 
 Metrics are stored in an 8KB buffer before being
 sent to graphite in order to take reduce network
-overhead.  The buffer size is configurable in the
+overhead. The buffer size is configurable in the
 config file.
 
 Data is sent to graphite on a "best effort" 
-basis.  If the graphite server is down or the tcp 
+basis. If the graphite server is down or the tcp 
 connection fails, you will lose that buffer's worth
 of data.
  
@@ -106,10 +113,13 @@ You can also look for information on the github page:
 
 	https://github.com/joemiller/collectd-graphite
 
-Please use the github issues page for bugs and feedback.  Pull
+Please use the github issues page for bugs and feedback. Pull
 requests are also welcome!
 
 	https://github.com/joemiller/collectd-graphite/issues
+
+You can also check the syslog (/var/log/syslog) where the plugin 
+will log any unsuccessful attempts to connect to your Graphite server.
 
 
 FUTURE?
