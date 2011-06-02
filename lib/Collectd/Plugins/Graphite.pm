@@ -174,7 +174,22 @@ sub send_to_graphite {
      return 0;
 }
 
+sub graphite_flush {
+    plugin_log(LOG_ERR, "graphite_flush() called");
+    send_to_graphite();
+    $buff = '';
+}
+
+sub graphite_shutdown {
+    plugin_log(LOG_ERR, "graphite_shutdown() called");
+    send_to_graphite();
+    $buff = '';
+}
+
+
 plugin_register (TYPE_CONFIG, "Graphite", "graphite_config");
 plugin_register (TYPE_WRITE, "Graphite", "graphite_write");
+plugin_register (TYPE_FLUSH, "Graphite", "graphite_flush");
+plugin_register (TYPE_SHUTDOWN, "Graphite", "graphite_shutdown");
 
 1; # End of Collectd::Plugins::Graphite
