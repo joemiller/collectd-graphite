@@ -107,7 +107,7 @@ sub graphite_config {
             $prefix = $val;
         } elsif ( $key =~ /host/i ) {
             $graphite_host = $val;
-        } elsif ( $key =~/ port/i ) {
+        } elsif ( $key =~ /port/i ) {
             $graphite_port = $val;
         }
     }
