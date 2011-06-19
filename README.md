@@ -126,6 +126,9 @@ requests are also welcome!
 You can also check the syslog (/var/log/syslog) where the plugin 
 will log any unsuccessful attempts to connect to your Graphite server.
 
+Changelog
+---------
+See the Changes file.
 
 FUTURE?
 -------
