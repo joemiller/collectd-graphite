@@ -1,6 +1,7 @@
 Revision history for Collectd-Plugins-Graphite
 
 3    2011-07-10
+        first tests on collectd 5.0.  everything looks good so far.
         github-issue-2: flush buffer on exit (or when SIGUSR1 is sent to collectd)
         github-issue-5: use of uninitialized string warning
         github-issue-6: 'flush' handler throwing warnings

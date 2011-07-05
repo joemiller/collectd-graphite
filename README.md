@@ -23,6 +23,8 @@ Because the plugin requires the [Globals](http://collectd.org/wiki/index.php/Plu
 option to be set to true, you will need at least version 4.9 of collectd.
 If you are using an older version, you'll have to compile with global visibility of symbols.
 
+As of version 3, the plugin should work fine with collectd 5.0 as well.
+
 This is the command to compile collectd with global visibility symbols:
 
 	./configure CFLAGS="-DLT_LAZY_OR_NOW='RTLD_LAZY|RTLD_GLOBAL'"
