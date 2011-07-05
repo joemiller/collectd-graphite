@@ -17,7 +17,7 @@ Version 1
 
 =cut
 
-our $VERSION = '2';
+our $VERSION = '3';
 
 
 =head1 SYNOPSIS
@@ -124,12 +124,11 @@ sub graphite_write {
     my $plugin_str = $vl->{'plugin'};
     my $type_str   = $vl->{'type'};
     
-    if ( $vl->{'plugin_instance'} ne '' ) {
+    if ( defined $vl->{'plugin_instance'} ) {
         $plugin_str .=  "-" . $vl->{'plugin_instance'};
     }
-    if ( $vl->{'type_instance'} ne '' ) {
+    if ( defined $vl->{'type_instance'} ) {
         $type_str .= "-" . $vl->{'type_instance'};
-
     }
     
     for (my $i = 0; $i < scalar (@$ds); ++$i) {
@@ -172,12 +171,12 @@ sub send_to_graphite {
      print $sock $buff;
      close($sock);
      $buff = '';
-     return 0;
+     return 1;
 }
 
 sub graphite_flush {
-    plugin_log(LOG_INFO, "graphite_flush() called");
     send_to_graphite();
+    return 1;
 }
 
 plugin_register (TYPE_CONFIG, "Graphite", "graphite_config");
