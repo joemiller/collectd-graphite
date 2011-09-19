@@ -48,6 +48,55 @@ To install this module, run the following commands:
 	make test
 	make install
 
+Collectd 4.10.3 on RHEL5 / CentOS 5 errors
+------------------------------------------
+
+( Thanks to https://github.com/indygreg/collectd-carbon for this info which also affects collectd perl plugins. )
+
+Using the plugin with collectd-4.10.3 from EPEL5 on RHEL or CentOS 5.x may produce the following error:
+
+    # /etc/init.d/collectd start
+    Starting collectd: plugin_load_file: The global flag is not supported, libtool 2 is required for this.
+    perl: Initializing Perl interpreter...
+    Can't load '/usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi/auto/threads/threads.so' for module threads: /usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi/auto/threads/threads.so: undefined symbol: PL_no_mem at /usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi/DynaLoader.pm line 230.
+     at /usr/lib/perl5/vendor_perl/5.8.8/Collectd.pm line 27
+    Compilation failed in require at /usr/lib/perl5/vendor_perl/5.8.8/Collectd.pm line 27.
+    BEGIN failed--compilation aborted at /usr/lib/perl5/vendor_perl/5.8.8/Collectd.pm line 27.
+    Compilation failed in require.
+    BEGIN failed--compilation aborted.
+    perl: init_pi: Unable to bootstrap Collectd: Can't load '/usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi/auto/threads/threads.so' for module threads: /usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi/auto/threads/threads.so: undefined symbol: PL_no_mem at /usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi/DynaLoader.pm line 230.
+     at /usr/lib/perl5/vendor_perl/5.8.8/Collectd.pm line 27
+    Compilation failed in require at /usr/lib/perl5/vendor_perl/5.8.8/Collectd.pm line 27.
+    BEGIN failed--compilation aborted at /usr/lib/perl5/vendor_perl/5.8.8/Collectd.pm line 27.
+    Compilation failed in require.
+    BEGIN failed--compilation aborted
+    perl: Configuration failed with a fatal error - plugin disabled!
+    
+This may also occur on other operating systems. It is caused by a libtool/libltdl quirk described in [this mailing list thread](http://mailman.verplant.org/pipermail/collectd/2008-March/001616.html). As per the workarounds detailed there, you may either:
+
+ 1. Modify the init script.
+
+        @@ -25,7 +25,7 @@
+                echo -n $"Starting $prog: "
+                if [ -r "$CONFIG" ]
+                then
+        -               daemon /usr/sbin/collectd -C "$CONFIG"
+        +               LD_PRELOAD=/usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi/CORE/libperl.so daemon /usr/sbin/collectd -C "$CONFIG"
+                        RETVAL=$?
+                        echo
+                        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
+
+ 1. Modify the RPM and rebuild.
+
+        @@ -182,7 +182,7 @@
+
+
+         %build
+        -%configure \
+        +%configure CFLAGS=-"DLT_LAZY_OR_NOW='RTLD_LAZY|RTLD_GLOBAL'" \
+             --disable-static \
+             --disable-ascent \
+             --disable-apple_sensors \
 
 CONFIGURATION
 -------------
