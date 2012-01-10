@@ -1,0 +1,4 @@
+# format version number, currently 3; this line is compulsory!
+version=3
+# URL to the package page followed by a regex to search
+http://search.cpan.org/dist/Collectd-Plugins-Graphite/   .*/Collectd-Plugins-Graphite-v?(\d[\d_.-]+)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)$
