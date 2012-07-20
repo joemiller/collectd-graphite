@@ -86,6 +86,7 @@ Copyright 2011 Joe Miller.
 
 my $buff = '';
 my $sock_timeout  = 10;
+my $socket;
 
 # config vars.  These can be overridden in collectd.conf
 my $buffer_size   = 8192;
@@ -159,23 +160,33 @@ sub graphite_write {
 
 sub send_to_graphite {
      return 0 if length($buff) == 0;
-     my $sock = IO::Socket::INET->new(PeerAddr => $graphite_host,
-                                      PeerPort => $graphite_port,
-                                      Proto    => 'tcp',
-                                      Timeout  => $sock_timeout);
-     unless ($sock) {
+     $socket ||= IO::Socket::INET->new(PeerAddr => $graphite_host,
+                                     PeerPort => $graphite_port,
+                                     Proto    => 'tcp',
+                                     Timeout  => $sock_timeout);
+     unless ($socket) {
          plugin_log(LOG_ERR, "Graphite.pm: failed to connect to " .
                              "$graphite_host:$graphite_port : $!");
          return 0;
      }
-     print $sock $buff;
-     close($sock);
+
+     unless (print $socket $buff) {
+         plugin_log(LOG_ERR, "Graphite.pm: failed write to " .
+                             "$graphite_host:$graphite_port : $!");
+         close($socket);
+         $socket = undef;
+         return 0;
+     }
      $buff = '';
      return 1;
 }
 
 sub graphite_flush {
-    send_to_graphite();
+    if ($socket) {
+      send_to_graphite();
+      close($socket);
+      $socket = undef;
+    }
     return 1;
 }
 
