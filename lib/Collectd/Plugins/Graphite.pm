@@ -169,7 +169,14 @@ sub send_to_graphite {
                              "$graphite_host:$graphite_port : $!");
          return 0;
      }
-     print $socket $buff;
+
+     unless (print $socket $buff) {
+         plugin_log(LOG_ERR, "Graphite.pm: failed write to " .
+                             "$graphite_host:$graphite_port : $!");
+         close($socket);
+         $socket = undef;
+         return 0;
+     }
      $buff = '';
      return 1;
 }
