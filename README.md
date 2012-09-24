@@ -1,3 +1,6 @@
+Collectd 5.1+ comes with a C-based graphite plugin. I would recommend using that as it will be maintained 
+going forward as part of collectd. More info here: http://collectd.org/wiki/index.php/Plugin:Write_Graphite
+
 Collectd-Graphite Plugin
 ========================
 
