@@ -1,0 +1,16 @@
+Source: libcollectd-plugins-graphite-perl
+Section: perl
+Priority: optional
+Build-Depends: debhelper (>= 5)
+Build-Depends-Indep: perl (>= 5.6.10-12)
+Maintainer: David Bryson <david@statichacks.org>
+Standards-Version: 3.8.0
+Homepage: http://search.cpan.org/dist/Collectd-Plugins-Graphite/
+
+Package: libcollectd-plugins-graphite-perl
+Architecture: all
+Depends: ${perl:Depends}, ${misc:Depends}
+Description:  Send collectd metrics to graphite
+ Send collectd metrics to graphite
+ .
+ This description was automagically extracted from the module by dh-make-perl.

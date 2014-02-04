@@ -1,0 +1,13 @@
+Package: libcollectd-plugins-graphite-perl
+Version: 3-1
+Architecture: all
+Maintainer: David Bryson <dbryson@axcient.com>
+Installed-Size: 32
+Depends: perl
+Section: perl
+Priority: optional
+Homepage: http://search.cpan.org/dist/Collectd-Plugins-Graphite/
+Description: Send collectd metrics to graphite
+ Send collectd metrics to graphite
+ .
+ This description was automagically extracted from the module by dh-make-perl.

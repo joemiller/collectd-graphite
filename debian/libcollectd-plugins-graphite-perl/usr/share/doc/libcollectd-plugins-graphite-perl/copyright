@@ -1,0 +1,16 @@
+This is the debian package for the Collectd-Plugins-Graphite module.
+It was created by David Bryson <dbryson@axcient.com> using dh-make-perl.
+
+It was downloaded from http://search.cpan.org/dist/Collectd-Plugins-Graphite/
+
+This copyright info was automatically extracted from the perl module.
+It may not be accurate, so you better check the module sources
+if you don't want to get into legal troubles.
+
+The upstream author is: 
+
+Joe Miller, <joeym at joeym.net>.
+
+
+The Debian packaging is (C) 2011, David Bryson <dbryson@axcient.com> and
+is licensed under the same terms as the software itself (see above).
